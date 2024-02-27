@@ -13,8 +13,8 @@ function App() {
   const [productNames, setProductNames] = useState([]);
   const [prices, setPrices] = useState([]);
   const [selectedProductName, setSelectedProductName] = useState();
-  const [selectedPrice, setSelectedPrice] = useState("");
-  const [selectedBrand, setSelectedBrand] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState();
+  const [selectedBrand, setSelectedBrand] = useState();
 
   const [productsId, setProductsId] = useState([]);
   const [products, setProducts] = useState([]);
@@ -122,7 +122,7 @@ function App() {
           selectedPrice={selectedPrice}
           selectedBrand={selectedBrand}
         />
-        {productsId.length === 50 && (
+        {products && productsId.length === 50 && (
           <Buttons
             page={page}
             productsIdLength={productsId.length}

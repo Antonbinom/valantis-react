@@ -1,7 +1,6 @@
+import React, { useEffect, useRef } from "react";
 import Product from "../Product/Product";
 import s from "./ProductTable.module.scss";
-
-import React, { useEffect, useRef } from "react";
 
 const ProductTable = ({
   loading,
@@ -83,13 +82,14 @@ const ProductTable = ({
           </select>
         </div>
       </div>
+
       <div ref={tableBody} className={`${s.table__body}`}>
         {products.length ? (
           products.map((product, index) => (
             <Product key={product.id} number={index} data={product} />
           ))
         ) : (
-          <div>none</div>
+          <div className={`${s.table__empty}`}>ничего нет</div>
         )}
       </div>
     </div>
