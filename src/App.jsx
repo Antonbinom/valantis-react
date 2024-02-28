@@ -90,6 +90,9 @@ function App() {
   }
 
   function onSelectChange(selectedValue, method) {
+    setSelectedProductName();
+    setSelectedPrice();
+    setSelectedBrand();
     eval(`${method}`)(selectedValue);
   }
 
@@ -122,7 +125,7 @@ function App() {
           selectedPrice={selectedPrice}
           selectedBrand={selectedBrand}
         />
-        {products && productsId.length === 50 && (
+        {products.length && productsId.length === 50 && (
           <Buttons
             page={page}
             productsIdLength={productsId.length}
