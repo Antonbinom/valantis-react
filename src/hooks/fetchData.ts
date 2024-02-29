@@ -3,8 +3,13 @@ import md5 from "md5";
 
 export const fetchData = async (action: string, params: any) => {
   try {
-    const apiUrl = "http://api.valantis.store:40000/";
+    const apiUrl = process.env.REACT_APP_API_URL;
     const password = "Valantis";
+
+    if (!apiUrl) {
+      throw new Error("API_URL is undefined");
+    }
+
     const xAuthToken = generateXAuthToken(password);
 
     function generateXAuthToken(password: string) {
