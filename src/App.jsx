@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     if (!loading) setLoading(true);
-  }, [selectedBrand, selectedPrice, selectedProductName, offset, page]);
+  }, [selectedBrand, selectedPrice, selectedProductName, page]);
 
   // filter items
   useEffect(() => {
@@ -59,7 +59,7 @@ function App() {
         setProductsId(res.data?.result);
       }
     });
-  }, [offset, page]);
+  }, [page]);
 
   // get items
   useEffect(() => {
