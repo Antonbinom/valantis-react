@@ -1,0 +1,4 @@
+[[redirects]]
+from = "https://valantis-react.netlify.app/api/*"
+to = "http://api.valantis.store:40000/"
+status = 200
