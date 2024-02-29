@@ -26,10 +26,6 @@ function App() {
     getFields("price", setPrices);
   }, []);
 
-  useEffect(() => {
-    if (!loading) setLoading(true);
-  }, [selectedBrand, selectedPrice, selectedProductName, page]);
-
   // filter items
   useEffect(() => {
     const params = {
@@ -63,6 +59,8 @@ function App() {
 
   // get items
   useEffect(() => {
+    if (!loading) setLoading(true);
+
     if (!productsId.length) return;
 
     fetchData("get_items", {
@@ -79,17 +77,20 @@ function App() {
   }, [productsId]);
 
   function onNextPage() {
+    setLoading(true);
     setOffset(offset + 50);
     setPage(page + 1);
   }
 
   function onPrevPage() {
+    setLoading(true);
     if (offset < 50 || page === 0) return;
     setOffset(offset - 50);
     setPage(page - 1);
   }
 
   function onSelectChange(selectedValue, method) {
+    setLoading(true);
     setSelectedProductName();
     setSelectedPrice();
     setSelectedBrand();
@@ -102,8 +103,13 @@ function App() {
         const filteredFields = [...new Set(res.data.result)]
           .filter((field) => field !== null)
           .sort((a, b) => {
-            if (typeof a === "string") return a.localeCompare(b);
-            if (typeof b === "number") return a - b;
+            if (typeof a === "string" && typeof b === "string") {
+              return a.localeCompare(b);
+            }
+            if (typeof a === "number" && typeof b === "number") {
+              return a - b;
+            }
+            return 0;
           });
         setter(filteredFields);
       }
